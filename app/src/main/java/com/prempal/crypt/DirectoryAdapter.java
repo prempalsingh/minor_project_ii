@@ -34,8 +34,10 @@ public class DirectoryAdapter extends RecyclerView.Adapter<DirectoryAdapter.View
     public void onBindViewHolder(DirectoryAdapter.ViewHolder holder, int position) {
         try {
             JSONObject object = directory.getJSONObject(position);
-            holder.itemName.setText(object.getString("name"));
-            if (object.getString("type").equals("dir")) {
+            final String itemName = object.getString("name");
+            holder.itemName.setText(itemName);
+            final String itemType = object.getString("type");
+            if (itemType.equals("dir")) {
                 holder.itemType.setImageResource(R.drawable.ic_folder_blue_36dp);
             } else {
                 holder.itemType.setImageResource(R.drawable.ic_insert_drive_file_blue_36dp);
@@ -43,7 +45,12 @@ public class DirectoryAdapter extends RecyclerView.Adapter<DirectoryAdapter.View
             holder.view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    if (itemType.equals("dir")) {
+                        listener.updateCurrentPath(itemName);
+                        listener.fetchDirectoryListing();
+                    } else {
+                        listener.downloadFile(itemName);
+                    }
                 }
             });
         } catch (JSONException e) {

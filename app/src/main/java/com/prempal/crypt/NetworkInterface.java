@@ -11,4 +11,6 @@ public interface NetworkInterface {
 
     void updateCurrentPath(String folder);
 
+    void uploadFile(String file);
+
 }
