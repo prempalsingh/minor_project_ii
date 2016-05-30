@@ -3,13 +3,12 @@ package com.prempal.crypt;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
 
     TextView appName;
     EditText username, password;
@@ -21,6 +20,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         appName = (TextView) findViewById(R.id.tv_app_name);
+        username = (EditText) findViewById(R.id.et_username);
+        password = (EditText) findViewById(R.id.et_password);
         login = (Button) findViewById(R.id.btn_login);
 
         Typeface face = Typeface.createFromAsset(getAssets(), "lobster-two.bold-italic.ttf");
